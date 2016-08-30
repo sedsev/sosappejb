@@ -27,7 +27,7 @@ public class Administrator implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="cni_number", length=20, nullable = false)
+    @Column(name="cni_number", length=20, nullable = false, unique = true)
     private String cniNumber;
     public Long getId() {
         return id;

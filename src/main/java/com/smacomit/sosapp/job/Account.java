@@ -7,12 +7,15 @@ package com.smacomit.sosapp.job;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,9 +30,17 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private SOSUser owner;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date created;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date modified;
+    @Column(nullable = false)
     private int state;
+    private AccountType type;
+    private List<SOSEventType> eventTypes;
+    private SOSLocation location;
 
     public Long getId() {
         return id;

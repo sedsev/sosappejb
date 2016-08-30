@@ -6,22 +6,43 @@
 package com.smacomit.sosapp.job;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author donald
  */
 @Entity
+@Table(name="dynamic_location")
 public class DynamicLocation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
+    private double ray;
+    @Column(nullable = false)
+    private double latitude;
+    @Column(nullable = false)
+    private double longitude;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date modified;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date created;
+    @Column(nullable = false)
+    private int state;
+    private Account account;
 
     public Long getId() {
         return id;

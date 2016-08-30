@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -33,17 +35,19 @@ public class SOSUser implements Serializable {
     private String firstName;
     @Column(name="last_name", length=60, nullable = false)
     private String lastName;
+    @Column(name="phone_number", length=160, nullable = false, unique = true)
     private String email;
     @Column(name="phone_number", length=20, nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false)
     private String password;
-    @Column(name="date_of_birth")
+    @Column(name="date_of_birth", nullable=false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfBirth;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 12)
     private String sex;
     private List<Role> roles;
-
+    
     public Long getId() {
         return id;
     }

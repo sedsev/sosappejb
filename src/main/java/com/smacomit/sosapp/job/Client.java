@@ -7,12 +7,15 @@ package com.smacomit.sosapp.job;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,10 +33,16 @@ public class Client implements Serializable {
     private String name;
     @Column(length = 160, nullable = false, unique = true)
     private String email;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date created;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date modified;
+    @Column(nullable = false)
     private int state;
+    private List<Account> acounts;
+    private Administrator creator;
 
     public Long getId() {
         return id;

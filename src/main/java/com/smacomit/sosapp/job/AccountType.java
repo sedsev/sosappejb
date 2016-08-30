@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,10 +30,14 @@ public class AccountType implements Serializable {
     private Long id;
     @Column(nullable = false, length = 30, unique = true)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2500)
     private String description;
-    private SOSUser creator;
+    private Administrator creator;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date created;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date modified;
     private int state;
 
