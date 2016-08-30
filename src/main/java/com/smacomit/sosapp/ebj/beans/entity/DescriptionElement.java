@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,28 +23,78 @@ import javax.persistence.TemporalType;
  * @author donald
  */
 @Entity
-@Table(name="role")
-public class Role implements Serializable {
+@Table(name="description_element")
+public class DescriptionElement implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(length = 60, nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Column(length = 2500, nullable = false)
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Date created;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Date modified;
     @Column(nullable = false)
     private int state;
     @OneToOne
     @JoinColumn(nullable = false)
-    private Administrator creator;
+    private ServiceDescription serviceDescription;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public ServiceDescription getServiceDescription() {
+        return serviceDescription;
+    }
+
+    public void setServiceDescription(ServiceDescription serviceDescription) {
+        this.serviceDescription = serviceDescription;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -64,10 +114,10 @@ public class Role implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Role)) {
+        if (!(object instanceof DescriptionElement)) {
             return false;
         }
-        Role other = (Role) object;
+        DescriptionElement other = (DescriptionElement) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +126,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smacomit.sosapp.job.Role[ id=" + id + " ]";
+        return "com.smacomit.sosapp.job.DescriptionElement[ id=" + id + " ]";
     }
     
 }

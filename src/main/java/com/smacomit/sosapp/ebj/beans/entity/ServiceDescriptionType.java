@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,8 +23,8 @@ import javax.persistence.TemporalType;
  * @author donald
  */
 @Entity
-@Table(name="sos_event_type")
-public class SOSEventType implements Serializable {
+@Table(name="service_description_type")
+public class ServiceDescriptionType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,7 +44,57 @@ public class SOSEventType implements Serializable {
     private int state;
     @OneToOne
     @JoinColumn(nullable = false)
-    private Administrator creator;
+    private SOSUser creator;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public SOSUser getCreator() {
+        return creator;
+    }
+
+    public void setCreator(SOSUser creator) {
+        this.creator = creator;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -64,10 +114,10 @@ public class SOSEventType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SOSEventType)) {
+        if (!(object instanceof ServiceDescriptionType)) {
             return false;
         }
-        SOSEventType other = (SOSEventType) object;
+        ServiceDescriptionType other = (ServiceDescriptionType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +126,7 @@ public class SOSEventType implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smacomit.sosapp.job.SOSEventType[ id=" + id + " ]";
+        return "com.smacomit.sosapp.job.ServiceDescriptionType[ id=" + id + " ]";
     }
     
 }

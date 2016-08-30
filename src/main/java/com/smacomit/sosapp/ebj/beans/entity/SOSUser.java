@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,11 +12,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,32 +27,32 @@ import javax.persistence.TemporalType;
  * @author donald
  */
 @Entity
-@Table(name="client")
-public class Client implements Serializable {
+@Table(name="user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class SOSUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(length = 60, nullable = false, unique = true)
-    private String name;
-    @Column(length = 160, nullable = false, unique = true)
+    @Column(name="username", length=60, nullable = false)
+    private String userName;
+    @Column(name="first_name", length=60, nullable = false)
+    private String firstName;
+    @Column(name="last_name", length=60, nullable = false)
+    private String lastName;
+    @Column(name="phone_number", length=160, nullable = false, unique = true)
     private String email;
+    @Column(name="phone_number", length=20, nullable = false, unique = true)
+    private String phoneNumber;
+    @Column(nullable = false)
+    private String password;
+    @Column(name="date_of_birth", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date modified;
-    @Column(nullable = false)
-    private int state;
-    @OneToMany
-    @JoinColumn(name="sos_user_id")
-    private List<Account> accounts;
-    @OneToOne
-    @JoinColumn(nullable = false)
-    private Administrator creator;
-
+    private Date dateOfBirth;
+    @Column(nullable = false, length = 12)
+    private String sex;
+    private List<Role> roles;
     public Long getId() {
         return id;
     }
@@ -69,10 +71,10 @@ public class Client implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Client)) {
+        if (!(object instanceof SOSUser)) {
             return false;
         }
-        Client other = (Client) object;
+        SOSUser other = (SOSUser) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -81,7 +83,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smacomit.sosapp.job.Client[ id=" + id + " ]";
+        return "com.smacomit.sosapp.job.SOSUser[ id=" + id + " ]";
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -41,6 +41,48 @@ public class SOSEvent implements Serializable {
     @OneToOne
     @JoinColumn(nullable = false)
     private SOSLocation location;
+
+    public SOSUser getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(SOSUser author) {
+        this.author = author;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public SOSLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(SOSLocation location) {
+        this.location = location;
+    }
+    
+    
 
     public Long getId() {
         return id;

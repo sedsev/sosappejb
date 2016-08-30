@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,28 +23,76 @@ import javax.persistence.TemporalType;
  * @author donald
  */
 @Entity
-@Table(name="description_element")
-public class DescriptionElement implements Serializable {
+@Table(name="operation")
+public class Operation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(length = 60, nullable = false)
-    private String name;
-    @Column(length = 2500, nullable = false)
-    private String description;
+    private SOSUser author;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date created;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date modified;
-    @Column(nullable = false)
-    private int state;
+    private int targetId;
+    private String value;
     @OneToOne
     @JoinColumn(nullable = false)
-    private ServiceDescription serviceDescription;
+    private OperationType op;
+    @OneToOne
+    @JoinColumn(nullable = false)
+    private Ressource ressource;
+
+    public SOSUser getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(SOSUser author) {
+        this.author = author;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public int getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public OperationType getOp() {
+        return op;
+    }
+
+    public void setOp(OperationType op) {
+        this.op = op;
+    }
+
+    public Ressource getRessource() {
+        return ressource;
+    }
+
+    public void setRessource(Ressource ressource) {
+        this.ressource = ressource;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -64,10 +112,10 @@ public class DescriptionElement implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DescriptionElement)) {
+        if (!(object instanceof Operation)) {
             return false;
         }
-        DescriptionElement other = (DescriptionElement) object;
+        Operation other = (Operation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +124,7 @@ public class DescriptionElement implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smacomit.sosapp.job.DescriptionElement[ id=" + id + " ]";
+        return "com.smacomit.sosapp.job.Operation[ id=" + id + " ]";
     }
     
 }

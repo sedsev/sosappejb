@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -31,6 +31,24 @@ public class ServiceDescription implements Serializable {
     @JoinColumn(nullable = false)
     private ServiceDescriptionType type;
     private List<DescriptionElement> elements;
+
+    public ServiceDescriptionType getType() {
+        return type;
+    }
+
+    public void setType(ServiceDescriptionType type) {
+        this.type = type;
+    }
+
+    public List<DescriptionElement> getElements() {
+        return elements;
+    }
+
+    public void setElements(List<DescriptionElement> elements) {
+        this.elements = elements;
+    }
+    
+    
 
     public Long getId() {
         return id;

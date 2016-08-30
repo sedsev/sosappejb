@@ -3,46 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.smacomit.sosapp.job;
+package com.smacomit.sosapp.ebj.beans.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author donald
  */
 @Entity
-@Table(name="operation")
-public class Operation implements Serializable {
+@Table(name="sos_location")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class SOSLocation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private SOSUser author;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date created;
-    @Column(nullable = false)
-    private int targetId;
-    private String value;
-    @OneToOne
-    @JoinColumn(nullable = false)
-    private OperationType op;
-    @OneToOne
-    @JoinColumn(nullable = false)
-    private Ressource ressource;
 
     public Long getId() {
         return id;
@@ -62,10 +46,10 @@ public class Operation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Operation)) {
+        if (!(object instanceof SOSLocation)) {
             return false;
         }
-        Operation other = (Operation) object;
+        SOSLocation other = (SOSLocation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -74,7 +58,7 @@ public class Operation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smacomit.sosapp.job.Operation[ id=" + id + " ]";
+        return "com.smacomit.sosapp.job.Location[ id=" + id + " ]";
     }
     
 }
