@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +34,8 @@ public class AccountType implements Serializable {
     private String name;
     @Column(nullable = false, length = 2500)
     private String description;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private Administrator creator;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)

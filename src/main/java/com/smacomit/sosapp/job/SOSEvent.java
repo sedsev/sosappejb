@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,12 +30,16 @@ public class SOSEvent implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private SOSUser author;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date created;
     private String title;
     private String description;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private SOSLocation location;
 
     public Long getId() {

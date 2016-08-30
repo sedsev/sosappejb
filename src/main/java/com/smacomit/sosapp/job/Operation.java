@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +37,11 @@ public class Operation implements Serializable {
     @Column(nullable = false)
     private int targetId;
     private String value;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private OperationType op;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private Ressource ressource;
 
     public Long getId() {

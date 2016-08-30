@@ -42,8 +42,7 @@ public class DynamicLocation implements Serializable {
     private Date created;
     @Column(nullable = false)
     private int state;
-    private Account account;
-
+    
     public Long getId() {
         return id;
     }

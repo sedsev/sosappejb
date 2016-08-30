@@ -13,6 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +33,6 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private SOSUser owner;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date created;
@@ -38,9 +41,14 @@ public class Account implements Serializable {
     private Date modified;
     @Column(nullable = false)
     private int state;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private AccountType type;
     private List<SOSEventType> eventTypes;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private SOSLocation location;
+    private ServiceDescription service;
 
     public Long getId() {
         return id;

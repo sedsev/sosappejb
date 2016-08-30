@@ -14,6 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -41,7 +44,11 @@ public class Client implements Serializable {
     private Date modified;
     @Column(nullable = false)
     private int state;
-    private List<Account> acounts;
+    @OneToMany
+    @JoinColumn(name="sos_user_id")
+    private List<Account> accounts;
+    @OneToOne
+    @JoinColumn(nullable = false)
     private Administrator creator;
 
     public Long getId() {
